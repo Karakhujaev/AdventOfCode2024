@@ -3,37 +3,32 @@ class RedNosedReports:
         self.reports = reports
 
     def is_ordered(self, report):
-        """Check if a report is ordered."""
         for i in range(len(report) - 1):
             if report[i] >= report[i + 1] or report[i] + 3 < report[i + 1]:
                 return False
         return True
 
     def is_unordered(self, report):
-        """Check if a report is unordered."""
         for i in range(len(report) - 1):
             if report[i] <= report[i + 1] or report[i] - 3 > report[i + 1]:
                 return False
         return True
 
     def ordered_check(self, report):
-        """Check ordered report allowing one bad level."""
         for i in range(len(report)):
-            modified_report = report[:i] + report[i + 1:]  # Remove one level
+            modified_report = report[:i] + report[i + 1:]  
             if self.is_ordered(modified_report):
                 return True
-        return self.is_ordered(report)  # Check without removing a level
+        return self.is_ordered(report)  
 
     def unordered_check(self, report):
-        """Check unordered report allowing one bad level."""
         for i in range(len(report)):
-            modified_report = report[:i] + report[i + 1:]  # Remove one level
+            modified_report = report[:i] + report[i + 1:] 
             if self.is_unordered(modified_report):
                 return True
-        return self.is_unordered(report)  # Check without removing a level
+        return self.is_unordered(report) 
 
     def get_result(self):
-        """Calculate the number of safe reports."""
         result = 0
         for report in self.reports:
             if self.ordered_check(report) or self.unordered_check(report):

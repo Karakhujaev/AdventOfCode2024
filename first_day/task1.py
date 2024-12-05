@@ -1,0 +1,22 @@
+#1307619
+def historians_reconcile(left_list, right_list):
+    left_sorted = sorted(left_list)
+    right_sorted = sorted(right_list)
+    total_distance = sum(abs(l - r) for l, r in zip(left_sorted, right_sorted))
+    return total_distance
+
+def main():
+    with open("input1.txt", "r") as file:
+        lines = file.readlines()
+
+    left_list = []
+    right_list = []
+    for line in lines:
+        left, right = map(int, line.split())
+        left_list.append(left)
+        right_list.append(right)
+    result = historians_reconcile(left_list, right_list)
+    print(result)  
+
+if __name__ == "__main__":
+    main()
